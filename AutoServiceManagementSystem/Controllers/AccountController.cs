@@ -59,7 +59,7 @@ namespace AutoServiceManagementSystem.Controllers
 			}
 		}
 
-		//
+
 		// GET: /Account/Login
 		//[RequireHttps]
 		[AllowAnonymous]
@@ -69,7 +69,7 @@ namespace AutoServiceManagementSystem.Controllers
 			return View();
 		}
 
-		//
+
 		// POST: /Account/Login
 		[HttpPost]
 		[AllowAnonymous]
@@ -98,7 +98,7 @@ namespace AutoServiceManagementSystem.Controllers
 			}
 		}
 
-		//
+
 		// GET: /Account/VerifyCode
 		[AllowAnonymous]
 		public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
@@ -111,7 +111,7 @@ namespace AutoServiceManagementSystem.Controllers
 			return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
 		}
 
-		//
+
 		// POST: /Account/VerifyCode
 		[HttpPost]
 		[AllowAnonymous]
@@ -138,7 +138,7 @@ namespace AutoServiceManagementSystem.Controllers
 			}
 		}
 
-		//
+
 		// GET: /Account/Register
 		[AllowAnonymous]
 		public ActionResult Register()
@@ -146,7 +146,7 @@ namespace AutoServiceManagementSystem.Controllers
 			return View();
 		}
 
-		//
+
 		// POST: /Account/Register
 		[HttpPost]
 		[AllowAnonymous]
@@ -156,7 +156,6 @@ namespace AutoServiceManagementSystem.Controllers
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
-				//var result = await UserManager.CreateAsync(user, model.Password);
 				var result = UserManager.Create(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -174,7 +173,7 @@ namespace AutoServiceManagementSystem.Controllers
             return View(model);
         }
 
-		//
+
 		// GET: /Account/ConfirmEmail
 		[AllowAnonymous]
 		public async Task<ActionResult> ConfirmEmail(string userId, string code)
@@ -187,7 +186,7 @@ namespace AutoServiceManagementSystem.Controllers
 			return View(result.Succeeded ? "ConfirmEmail" : "Error");
 		}
 
-		//
+
 		// GET: /Account/ForgotPassword
 		[AllowAnonymous]
 		public ActionResult ForgotPassword()
@@ -195,7 +194,7 @@ namespace AutoServiceManagementSystem.Controllers
 			return View();
 		}
 
-		//
+
 		// POST: /Account/ForgotPassword
 		[HttpPost]
 		[AllowAnonymous]
@@ -218,7 +217,7 @@ namespace AutoServiceManagementSystem.Controllers
 			return View(model);
 		}
 
-		//
+
 		// GET: /Account/ForgotPasswordConfirmation
 		[AllowAnonymous]
 		public ActionResult ForgotPasswordConfirmation()

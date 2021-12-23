@@ -14,13 +14,7 @@ namespace AutoServiceManagementSystem.Validation
 
 		}
 
-		/// <summary>
-		/// Checks if a phone number is a valid one.
-		///  11 digits
-		/// </summary>
-		/// <param name="value">Input phone number.</param>
-		/// <param name="validationContext">Describes the context in which the validation check is done.</param>
-		/// <returns>Success or ErrorMesage</returns>
+		
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
 			if (value != null)
@@ -28,7 +22,7 @@ namespace AutoServiceManagementSystem.Validation
 				string s = value.ToString();
 				bool valid = true;
 
-				if (s.StartsWith("87") && s.Length == 10)
+				if (s.StartsWith("87") && s.Length == 11)
 				{
 					foreach (char c in s)
 					{

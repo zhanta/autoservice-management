@@ -22,14 +22,11 @@ namespace AutoServiceManagementSystem.Migrations
         {
             AutomaticMigrationsEnabled = true;
             AutomaticMigrationDataLossAllowed = true;
-            //var migrator = new DbMigrator(this);
-            //pendingMigrations = migrator.GetPendingMigrations().Any();
         }
 
         protected override void Seed(MyDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-            //ClearDatabase<MyDbContext>();
+
             context = new MyDbContext();
 
             #region Seeding ApplicationUsers
@@ -190,10 +187,7 @@ namespace AutoServiceManagementSystem.Migrations
             }
         }
 
-        /// <summary>
-        /// Wrapper for SaveChanges adding the Validation Messages to the generated exception
-        /// </summary>
-        /// <param name="context">The context.</param>
+
         private void SaveChanges(DbContext context)
         {
             try
@@ -217,7 +211,7 @@ namespace AutoServiceManagementSystem.Migrations
                 throw new DbEntityValidationException(
                     "Entity Validation Failed - errors follow:\n" +
                     sb.ToString(), ex
-                ); // Add the original exception as the innerException
+                );
             }
         }
     }

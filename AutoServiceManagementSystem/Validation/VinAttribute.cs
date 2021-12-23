@@ -14,13 +14,6 @@ namespace AutoServiceManagementSystem.Validation
 
 		}
 
-		/// <summary>
-		/// Checks if a VIN code is the correct length (17) 
-		/// and if it contains only valid symbols (latin alpha-numeric).
-		/// </summary>
-		/// <param name="value">Vehicle identification number</param>
-		/// <param name="validationContext">Describes the context in which the validation check is done.</param>
-		/// <returns>Success or ErrorMessage</returns>
 		protected override ValidationResult IsValid(object value, ValidationContext validationContext)
 		{
 			if (value != null)

@@ -14,12 +14,6 @@ namespace AutoServiceManagementSystem
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 			routes.MapMvcAttributeRoutes();
 
-			//routes.MapRoute(
-			//    name: "Suppliers",
-			//    url: "Suppliers/{action}/{id}",
-			//    defaults: new { controller = "Supplier", action = "Index", id = UrlParameter.Optional }
-			//);
-
 			routes.MapRoute(
 				name: "Customers",
 				url: "Customers/{action}/{customerId}",
