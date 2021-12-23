@@ -1,0 +1,405 @@
+﻿/*#region Size Variables */
+
+
+@body-padding-offset: 5em;
+@info-panel-padding: 1em;
+@leading-image-margin-top: -3em;
+@leading-image-h1-size: 3.5em;
+@leading-image-h2-size: 1.66em;
+@max-input-field-width: 20em;
+@text-area-height: 16em;
+@icon-margin-right: 1em;
+@items-list-min-height: 66vh;
+
+@customer-container-min-height: 24em;
+@customer-container-min-width: 16em;
+@car-container-width: 20em;
+/*#endregion */
+
+/*#region Color Variables */
+
+@gray: #e6e6e6;
+@light-gray: #f6f6f6;
+@body-gray: #F0F0F0;
+@light-primary-blue: lighten(#00A1F1, 10%);
+@primary-blue: #00A1F1;
+@primary-blue-darker: #0072C6;
+@dark-gray: #3C3C3C;
+
+// validation
+@brand-success: rgba(63, 181, 24, 1);
+@brand-danger: rgba(254, 0, 57, 1);
+@input-validation-error-color: rgba(254, 0, 57, 1);
+@input-validation-valid-color: rgba(63, 181, 24, 1);
+/*#endregion */
+/*#region Mixins */
+
+.clearfix {
+    display: block;
+    zoom: 1;
+
+    &:after {
+        content: " ";
+        display: block;
+        font-size: 0;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+}
+
+.absolute-center-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+    text-shadow: 1px 1px 0 rgba(0,0,0,.75);
+    -webkit-transform: translate3d(-50%,-50%,0);
+    -moz-transform: translate3d(-50%,-50%,0);
+    -ms-transform: translate3d(-50%,-50%,0);
+    -o-transform: translate3d(-50%,-50%,0);
+    transform: translate3d(-50%,-50%,0);
+}
+
+.info-panel {
+    text-align: center;
+    background-color: @light-primary-blue;
+    margin: @info-panel-padding;
+
+    h2, h3 {
+        color: white;
+    }
+
+    @media screen and (max-width: 720px) {
+        margin: @info-panel-padding 0;
+    }
+}
+
+/*#endregion */
+
+/*#region Tag Fixes */
+html {
+    background-color: @dark-gray;
+
+    @media only screen and (max-width: 480px) {
+        background-color: @body-gray;
+    }
+}
+
+body {
+    background-color: @body-gray;
+    margin: 0 0;
+    padding: 0 0;
+}
+
+// Chrome input spinner for numbers - remove
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+input, select, textarea {
+    max-width: @max-input-field-width;
+}
+textarea {
+       min-height: @text-area-height;
+}
+input[type=checkbox] {
+ // need to find a shiv
+}
+/*#endregion */
+
+.body-content {
+    padding: @body-padding-offset;
+
+    @media screen and (max-width: 720px) {
+        padding-left: @body-padding-offset/4;
+        padding-right: @body-padding-offset/4;
+    }
+
+    .valid {
+        border-color: @brand-success;
+    }
+
+    .input-validation-error {
+        border-color: @brand-danger;
+    }
+}
+
+.metro-container {
+    background-color: @gray;
+    padding: 1em;
+    margin: 1em 1em;
+}
+
+.btn-group-actions {
+    margin-top: 2em;
+}
+
+#job-form {
+    fieldset {
+        display: block;
+        margin: 0 auto;
+
+        .input-field {
+            input[type="checkbox"] {
+                margin-left: 1em;
+            }
+        }
+    }
+
+    @media screen and (min-width: 1440px) {
+        input, textarea {
+            max-width: @max-input-field-width * 2;
+        }
+    }
+}
+
+/*#region Suppliers View */
+
+#suppliers-list {
+    min-height: @items-list-min-height;
+    .supplier-container {
+        .info-panel;
+        width: 26em;
+
+        @media screen and (min-width: 992px) and (max-width: 1200px) {
+            min-width: 26em;
+        }
+    }
+
+    #supplier-name {
+        margin-bottom: 0.5em;
+        margin-top: 0.5em;
+    }
+
+    #btn-add-supplier {
+        clear: left;
+    }
+
+    .skype-functions-container {
+        max-height: 2.5em;
+    }
+}
+
+/*#endregion */
+
+/*#region Customers View */
+#search-box {
+}
+
+#customers-list {
+    min-height: @items-list-min-height;
+    .customer-container {
+        background-color: @primary-blue;
+        color: white;
+        padding: 0;
+        margin: 1em 1em;
+        min-width: @customer-container-min-width;
+
+        .customer-info {
+            padding: 1em;
+            font-size: 1.1em;
+        }
+
+        i {
+            margin-right: @icon-margin-right;
+        }
+        .lead {
+            min-height: 1em;
+        }
+
+        @media only screen and (max-width: 768px) {
+            margin-left: 0;
+            margin-right: 0;
+            max-width: 100%;
+            border-bottom: 1px solid white;
+            border-left: 1px solid white;
+        }
+
+        @media only screen and (max-width: 545px) {
+            min-width: 100%;
+        }
+    }
+}
+
+
+/*#endregion */
+
+/*#region Cars View */
+
+#cars-list {
+    min-height: @items-list-min-height;
+
+    .car-container {
+        width: 20em;
+        background-color: ghostwhite;
+        text-align: center;
+        color: @dark-gray;
+        float: left;
+        margin: 2em 1em 2em 0;
+        padding: 0 0 1em 0;
+
+        .make-model {
+            margin-top: -1.5em;
+            padding: 0.5em 0;
+            background-color: @gray;
+        }
+
+        .details {
+            padding: 1em 0;
+        }
+
+        .car-actions {
+        }
+    }
+}
+
+/*#endregion */
+
+/*#region Layout */
+
+#navigation-top {
+    @media screen and (max-width: 720px) {
+        opacity: 0.85;
+
+        .navbar-brand {
+            display: none;
+        }
+
+        li {
+            text-align: center;
+            font-size: 1.33em;
+        }
+    }
+}
+
+#content-wrapper {
+    @media screen and (max-height: 1080px) {
+        min-height: 840px;
+    }
+
+    
+}
+
+footer {
+    .clearfix;
+    min-height: 8em;
+    background-color: @dark-gray;
+    color: ghostwhite;
+    text-align: center;
+
+    p {
+        font-size: large;
+        padding-top: 3em;
+    }
+}
+
+/*#endregion */
+
+
+/*#region Landing Page */
+
+#landing-wrapper {
+    i {
+        padding-right: 0.66em;
+    }
+
+    .row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+
+    .features-last {
+        margin-bottom: 0;
+    }
+
+    .image-overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+        background-color: #080d15;
+        opacity: .7;
+    }
+
+    .leading-image {
+        margin-top: @leading-image-margin-top;
+        background: no-repeat url('css/Images/hero.jpg') center scroll;
+        min-height: 100vh;
+
+        .hero {
+            .absolute-center-text;
+
+            h1 {
+                font-size: @leading-image-h1-size;
+                font-weight: bold;
+                margin: 0;
+                padding: 0;
+
+                @media screen and (max-width: 720px) {
+                    font-size: @leading-image-h1-size - 0.5;
+                }
+            }
+
+            h2 {
+                font-size: @leading-image-h2-size;
+                font-weight: bold;
+
+                @media screen and (max-width: 720px) {
+                    font-size: 1em;
+                }
+            }
+
+            @media scren and (max-width: 720px) {
+                hgroup {
+                    display: block;
+                    background-color: black;
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    .features {
+        padding: 4em 2em;
+    }
+
+    .item-feature {
+        padding-top: 1em;
+        padding-bottom: 1em;
+    }
+
+    .full-width {
+    }
+}
+
+
+/*#endregion */
+
+/* autocomplete */
+.autocomplete-suggestions {
+    text-align: left;
+    cursor: default;
+    border: 1px solid #ccc;
+    border-top: 0;
+    background: #fff;
+    box-shadow: -1px 1px 3px rgba(0,0,0,.1);
+    /* core styles should not be changed */
+    position: absolute;
+    display: none;
+    z-index: 9999;
+    max-height: 254px;
+    overflow: hidden;
+    overflow-y: auto;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.autocomplete-suggestion { position: relative; padding: 0 .6em; line-height: 23px; white-space: nowrap; overflow: hidden; font-size: 1.02em; color: #333; }
+.autocomplete-suggestion b { font-weight: normal; color: #1f8dd6; }
+.autocomplete-suggestion.selected { background: #f0f0f0; }

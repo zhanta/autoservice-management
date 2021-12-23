@@ -1,0 +1,77 @@
+﻿@model AutoServiceManagementSystem.ViewModels.Jobs.EditJobViewModel
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit Task</h2>
+@using (Html.BeginForm(null, null, FormMethod.Post, new { @id = "job-form" }))
+{
+    @Html.AntiForgeryToken()
+    
+    <div id="job-form" class="form-horizontal">
+        <div class="row">
+            <fieldset class="job-details col-md-12 col-xs-offset-6">
+                <legend>Task details</legend>
+                <div class="form-group input-field col-md-offset-4">
+                    @Html.LabelFor(model => model.Mileage, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Mileage, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Mileage, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group input-field">
+                    @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group input-field">
+                        @Html.LabelFor(model => model.Finished, htmlAttributes: new { @class = "control-label col-md-2" })
+                        @Html.EditorFor(model => model.Finished)
+                </div>
+                <div class="form-group input-field">
+                    @Html.LabelFor(model => model.Paid, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.EditorFor(model => model.Paid)
+                </div>
+            </fieldset>
+        </div>
+        
+        <div class="row">
+            <fieldset>
+                <legend>Spare parts</legend>
+            </fieldset>
+
+        </div>
+
+        <div id="spare-parts-list" class="form-group">
+            @Html.EditorForMany(j => j.SpareParts)
+        </div>
+        
+        <div class="row">
+            <div class="col-xs-12 col-md-4 pull-right">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Total</h3>
+                    </div>
+                    <div id="total" class="panel-body">
+                        0.00
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group pull-right">
+                <input type="submit" value="Save" class="btn btn-success" />
+                <a href="#" id="add-spare-part" class="btn btn-info">Add a new part</a>
+                @Html.ActionLink("Discard", "Index", null, htmlAttributes: new { @class = "btn btn-danger" })
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/js/jqueryval",
+        "~/js/app/job/edit")
+}

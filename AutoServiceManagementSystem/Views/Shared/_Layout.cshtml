@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Auto service management system" />
+    <title>@ViewBag.Title - Auto Service </title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/js/modernizr")
+    @RenderSection("ScriptsHead", required: false)
+</head>
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" id="navigation-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Auto Service Management System", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Home", "Home")</li>
+                    <li>@Html.ActionLink("Customers", "Index", "Customers")</li>
+                    <li>@Html.ActionLink("Suppliers", "Index", "Suppliers")</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div id="content-wrapper" class="container-fluid body-content">
+        @RenderBody()
+    </div>
+    <footer>
+        <p>He Zhun and Zhantore Company &copy; @DateTime.Now.Year</p>
+    </footer>
+    @Scripts.Render("~/js/jquery")
+    @Scripts.Render("~/js/bootstrap")
+    @Scripts.Render("~/js/autocomplete")
+    @Scripts.Render("~/js/app")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

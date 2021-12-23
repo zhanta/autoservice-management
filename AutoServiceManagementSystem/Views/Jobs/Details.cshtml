@@ -1,0 +1,99 @@
+﻿@model AutoServiceManagementSystem.ViewModels.Jobs.DisplayJobViewModel
+
+@{
+    ViewBag.Title = "Job Details";
+    var h2 = String.Format("{0}'s {1}", ViewBag.CustomerName, ViewBag.CarManufacturer);
+    var h3 = String.Format("{0}", ViewBag.CarPlateNumber ?? "");
+}
+
+
+<h2>
+    Repair details for @h2
+</h2>
+<h3>
+    @h3
+</h3>
+<hr />
+
+<div class="row">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                @Html.LabelFor(j => j.Mileage)
+            </div>
+            <div class="col-xs-6 col-md-6">
+                @Html.Encode(Model.Mileage.ToString("### ### ### km"))
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                @Html.LabelFor(j => j.Description)
+            </div>
+            <div class="col-md-6">
+                @Html.DisplayFor(j => j.Description)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                @Html.LabelFor(j => j.DateStarted)
+            </div>
+            <div class="col-xs-6 col-md-6">
+                @Html.DisplayFor(j => j.DateStarted)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-md-6">
+                @Html.LabelFor(j => j.LastModified)
+            </div>
+            <div class="col-xs-6 col-md-6">
+                @Html.DisplayFor(j => j.LastModified)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 col-sm-6">
+                @Html.LabelFor(j => j.IsFinished)
+            </div>
+            <div class="col-xs-9 col-sm-6">
+                @Html.DisplayFor(j => j.IsFinished)
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-3 col-sm-6">
+                @Html.LabelFor(j => j.IsPaid)
+            </div>
+            <div class="col-xs-9 col-sm-6">
+                @Html.DisplayFor(j => j.IsPaid)
+            </div>
+        </div>
+    </div>
+    <hr />
+    <h4>Spare Parts</h4>
+    <table class="table table-striped table-hover table-responsive col-md-12">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>OEM Code</th>
+                <th>Supplier</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            @Html.DisplayFor(j => j.SpareParts)
+            <tr>
+                <td colspan="5"></td>
+                <td><b>Total</b></td>
+            </tr>
+            <tr>
+                <td colspan="5"></td>
+                <td>@Model.Total</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div class="pull-right">
+    @Html.ActionLink("Edit", "Edit", "Jobs",
+                new { customerId = ViewBag.CustomerId, carId = ViewBag.CarId, jobId = Model.JobId }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Back", "Index", null, new { @class = "btn btn-default" })
+</div>

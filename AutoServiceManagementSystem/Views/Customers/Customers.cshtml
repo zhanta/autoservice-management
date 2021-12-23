@@ -1,0 +1,52 @@
+﻿@model PagedList.IPagedList<AutoServiceManagementSystem.ViewModels.Customers.DisplayCustomerViewModel>
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Customers";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row search-box">
+    @using (Html.BeginForm(null, "Customers", FormMethod.Get))
+    {
+        <div class="form-group">
+            @Html.TextBox("searchString", ViewBag.CurrentFilter as string, null, htmlAttributes: new { @class = "form-control col-xs-9 col-md-9", @placeholder = "Search by name" })
+            <input type="submit" class="btn btn-default" value="Search" />
+        </div>
+    }
+</div>
+
+<section id="customers-list" class="container-fluid">
+    @if (Model.Count() == 0)
+    {
+        <h3>It seems that you haven't added any customers yet.</h3>
+    }
+
+    @foreach (var customer in Model)
+    {
+        @Html.DisplayFor(c => customer)
+    }
+</section>
+
+<hr />
+<div class="controls">
+    <div class="row sort-buttons pull-left">
+        @Html.ActionLink("First Name", null, new { sortOrder = "firstname_asc", currentFilter = ViewBag.CurrentFilter }) <span class="glyphicon glyphicon-sort-by-alphabet"></span> |
+        @Html.ActionLink("First Name", null, new { sortOrder = "firstname_desc", currentFilter = ViewBag.CurrentFilter }) <span class="glyphicon glyphicon-sort-by-alphabet-alt"></span> |
+        @Html.ActionLink("Last Name", null, new { sortOrder = "lastname_asc", currentFilter = ViewBag.CurrentFilter }) <span class="glyphicon glyphicon-sort-by-alphabet"></span> |
+        @Html.ActionLink("Last Name", null, new { sortOrder = "lastname_desc", currentFilter = ViewBag.CurrentFilter }) <span class="glyphicon glyphicon-sort-by-alphabet-alt"></span>
+    </div>
+    <div class="row pull-right">
+        @Html.ActionLink("New customer", "Create", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Back", "Index", "Home", null, new { @class = "btn btn-default" })
+    </div>
+</div>
+<div class="clearfix"></div>
+<div class="text-center">
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Customers", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }), new PagedListRenderOptions
+    {
+        DisplayLinkToFirstPage = PagedListDisplayMode.Always,
+        DisplayLinkToLastPage = PagedListDisplayMode.Always
+    })
+</div>

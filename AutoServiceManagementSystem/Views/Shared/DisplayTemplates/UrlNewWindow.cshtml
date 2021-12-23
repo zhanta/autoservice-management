@@ -1,0 +1,5 @@
+﻿@{
+    ViewData.Model = ViewData.Model ?? "";
+    string webSiteUrl = ViewData.Model.ToString();
+}
+<a href="@ViewData.Model" target="_blank">@Html.ToShortUrl(webSiteUrl)</a>

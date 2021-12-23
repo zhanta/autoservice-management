@@ -1,0 +1,37 @@
+﻿@model AutoServiceManagementSystem.ViewModels.Cars.DisplayCarViewModel
+
+<div class="car-container">
+    <div class="make-model">
+        <h3 class="make">
+            @Html.DisplayFor(model => model.Manufacturer)
+        </h3>
+        <h4 class="model">
+            @Html.DisplayFor(model => model.Model)
+        </h4>
+    </div>
+    <div class="details">
+        <p class="year">
+            @Html.DisplayFor(model => model.Year)
+        </p>
+        <p class="vin-code">
+            @Html.DisplayFor(model => model.VIN)
+        </p>
+        <p class="fuel-type">
+            @Html.DisplayFor(model => model.FuelType)
+        </p>
+        <p class="plate-number">
+            @Html.DisplayFor(model => model.PlateCode)
+        </p>
+    </div>
+
+    <div class="car-actions btn-group">
+        @Html.ActionLink("Repairs History", "Index", "Jobs",
+                            new { customerId = ViewBag.CustomerId, carId = Model.CarId }, new { @class = "btn btn-success" })
+        @Html.ActionLink("Edit", "Edit",
+                            new { customerId = ViewBag.CustomerId, carId = Model.CarId }, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Delete", "Delete",
+                            new { customerId = ViewBag.CustomerId, carId = Model.CarId }, new { @class = "btn btn-danger" })
+    </div>
+</div>
+
+
